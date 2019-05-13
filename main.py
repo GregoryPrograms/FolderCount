@@ -25,7 +25,7 @@ def main():
             for sheet in excelDoc.sheets():
                 #Operating on the per - sheet level
                 #For each naming sheet (box), we check the folder name column and make sure every one of them is a file.
-                if("--" in sheet.cell(0,1)):
+                if("--" in (sheet.cell(0,1)).value):
                     for cell in sheet.col(0):
                         if(cell.value != "Box"):
                             if(not (Path.is_file(folderDirPath / cell.value[7:]))):
@@ -38,7 +38,7 @@ def main():
                         if(cell.value != "File Name"):
                             if(not cell.value[7:] in pdfList):
                                 errorFile.write(cell.value + "\n")
-                    errorFile.close()
+    errorFile.close()
 
 if(__name__ == "__main__"):
     main()
