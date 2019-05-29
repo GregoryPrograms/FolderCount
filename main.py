@@ -22,11 +22,11 @@ def main():
                 #For each naming sheet (box), we check the folder name column and make sure every one of them is a file.
                 for cell in sheet.col(0):
                     if(cell.value != "BARCODE"):
-                        if(not (Path.is_file(folderDirPath / cell.value[7:]))):
+                        if(not (Path.is_file(folderDirPath / (cell.value[7:] + ".pdf")))):
                             #If we are at this section of code, we've found a folder name that isn't in the directory we specified. 
                             #We print this to a file, as well as the name of the previous file
                             print("Hello!")
-                            errorFile.write(cell.value + "\n")
+                            errorFile.write(cell.value[7:] + "\n")
     errorFile.close()
 
 if(__name__ == "__main__"):
