@@ -18,17 +18,15 @@ def main():
             #Operating on the per - workbook level
             excelDoc = open_workbook(excelDirPath / excelPath)
             for sheet in excelDoc.sheets():
-                print("Hello?!?")
                 #Operating on the per - sheet level
                 #For each naming sheet (box), we check the folder name column and make sure every one of them is a file.
-                if("--" in (sheet.cell(0,1)).value):
-                    for cell in sheet.col(0):
-                        if(cell.value != "BARCODE"):
-                            if(not (Path.is_file(folderDirPath / cell.value[7:]))):
+                for cell in sheet.col(0):
+                    if(cell.value != "BARCODE"):
+                        if(not (Path.is_file(folderDirPath / cell.value[7:]))):
                             #If we are at this section of code, we've found a folder name that isn't in the directory we specified. 
                             #We print this to a file, as well as the name of the previous file
-                                print("Hello!")
-                                errorFile.write(cell.value + "\n")
+                            print("Hello!")
+                            errorFile.write(cell.value + "\n")
     errorFile.close()
 
 if(__name__ == "__main__"):
